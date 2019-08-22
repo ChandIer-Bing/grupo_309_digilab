@@ -72,6 +72,7 @@ module characters(
 	logic [39:0]vect_res;
 	logic [39:0]vect_and;
 	logic [39:0]vect_or;
+	logic [39:0]vect_flecha;
 	
 	// LETRAS
 	
@@ -126,6 +127,7 @@ module characters(
 	assign vect_res = {5'b00000,5'b00000,5'b00000,5'b11111,5'b00000,5'b00000,5'b00000,5'b00000};
 	assign vect_and = {5'b00000,5'b10110,5'b01001,5'b10101,5'b00010,5'b00101,5'b01001,5'b00110};
 	assign vect_or = {5'b00000,5'b01010,5'b01010,5'b01010,5'b01010,5'b01010,5'b01010,5'b01010};
+	assign vect_flecha = {5'b00000,5'b00100,5'b00010,5'b11111,5'b10010,5'b00100,5'b00000,5'b00000};
 
     ///////////////////////////////////////
 
@@ -149,6 +151,7 @@ module characters(
 			8'd45:  vec_char=vect_res;
 			8'd38:  vec_char=vect_and;
 			8'd124:  vec_char=vect_or;
+			8'd127:  vec_char=vect_flecha;
 			
 			8'd97:  vec_char=vect_char_a;
 			8'd98:  vec_char=vect_char_b;
@@ -176,7 +179,7 @@ module characters(
 			8'd120: vec_char=vect_char_x;
 			8'd121: vec_char=vect_char_y;
 			8'd122: vec_char=vect_char_z;
-			8'd164: vec_char=vect_char_nn;// eñe?
+			8'd164: vec_char=vect_char_nn;// eÃ±e?
 			default:vec_char=vect_num_p;//punto
 	endcase
 	
