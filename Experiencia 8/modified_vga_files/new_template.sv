@@ -30,9 +30,9 @@ module template_9x16_364x647( 	// horizontal x vertical
 	input clk,
 	input [11:0] hc,
 	input [11:0] vc,
-	output logic[2:0]matrix_x = 3'd0,	//coordenada X del cursor (en la matriz de la calculadora) ---> desde 0 hasta 5 ---> son 6 COLUMNAS
-	output logic[1:0]matrix_y = 2'd0,	//coordenada Y del cursor (en la matriz de la calculadora) ---> desde 0 hasta 3 ---> y 4 FILAS
-	output logic lineas					//dibuja las lineas en la grilla
+	output logic[1:0]matrix_x = 3'd0,	//coordenada X del cursor (en la matriz de la calculadora) ---> desde 0 hasta 3 ---> son 4 COLUMNAS
+	output logic[2:0]matrix_y = 2'd0,	//coordenada Y del cursor (en la matriz de la calculadora) ---> desde 0 hasta 5 ---> y 6 FILAS
+	output logic lines					//dibuja las lineas en la grilla
 	);
 
 	localparam d_col = 8'b1_1001;		//25 ....agregar 2 ceros //25 * 6 = 150    // distancia entre lineas  
@@ -52,11 +52,11 @@ module template_9x16_364x647( 	// horizontal x vertical
 	logic [10:0]hc_template, vc_template; // contadores HORizontales , VERticales LOCALES del modulo
 	
 	
-	parameter GRID_XI = 		330; // estos parametros no es necesario cambiarlos ya que se pueden modificar al instanciar el modulo
-	parameter GRID_XF = 		694; // estos parametros no es necesario cambiarlos ya que se pueden modificar al instanciar el modulo
+	parameter GRID_XI = 		312; // estos parametros no es necesario cambiarlos ya que se pueden modificar al instanciar el modulo
+	parameter GRID_XF = 		712; // estos parametros no es necesario cambiarlos ya que se pueden modificar al instanciar el modulo
 	
-	parameter GRID_YI = 		61; // estos parametros no es necesario cambiarlos ya que se pueden modificar al instanciar el modulo
-	parameter GRID_YF = 		708; // estos parametros no es necesario cambiarlos ya que se pueden modificar al instanciar el modulo
+	parameter GRID_YI = 		84; // estos parametros no es necesario cambiarlos ya que se pueden modificar al instanciar el modulo
+	parameter GRID_YF = 		684; // estos parametros no es necesario cambiarlos ya que se pueden modificar al instanciar el modulo
 
 	// V--- si el hc GLOBAL esta 'dentro de la calculadora' entonces el hc_temp sige al hc pero retrasado en GRID_XF   ---V
 					assign hc_template = ( (hc > GRID_XI) && (hc <= GRID_XF) )?hc - GRID_XI: 11'd0; //						hc : contador horizontal GLobal(del top module) | 
