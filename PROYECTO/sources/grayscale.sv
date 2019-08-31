@@ -22,24 +22,23 @@
 //mode luminance = 1
 
 module grayscale #(parameter mode = 0)(
-                    input logic R,G,B,
-                    output logic GR,GG,GB
+                    input  logic [23:0]  pixel,
+                    output logic [23:0]  gray_pix,
+                    output logic [ 7:0]  gray
                     );
-    logic gray;
+
+    logic [7:0] R,G,B;
+    assign R = pixel[23:16];
+    assign G = pixel[15: 8];
+    assign B = pixel[ 7: 0];
     always_comb begin
+        
         case(mode)
-            0: begin
-                gray = (R+G+B)*0.3333;
-                GR = gray;
-                 GG = gray;
-                  GB = gray;
-                end
-            1: begin
-                gray = (R*0.2126 + G*0.7152 + B*0.0722);
-                GR = gray; 
-                GG = gray;
-                GB = gray;
-               end
-        endcase     
+        
+            0: gray = (R+G+B)*0.3333;
+            1: gray = (R*0.2126 + G*0.7152 + B*0.0722);
+        
+        endcase
+        gray_pix = {gray,gray,gray};
     end
 endmodule

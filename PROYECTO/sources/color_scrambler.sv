@@ -21,10 +21,18 @@
 
 
 
-module color_scrambler( input logic R,G,B,
-                        input logic [3:0] swR,swG,swB,
-                        output logic csR,csG,csB
+module color_scrambler( input  logic [23:0] pixel,
+                        input  logic [3:0] swR,swG,swB,
+                        output logic [23:0] sc_pixel
                         );
+
+    logic  [7:0] R,G,B;
+    logic  [7:0] csR,csG,csB;
+    
+    assign R 		= pixel[23:16];
+    assign G 		= pixel[15: 8];
+    assign B 		= pixel[ 7: 0];
+    assign sc_pixel = {csR,csG,csB};
 
     scrambler RED  (.R(R),.G(G),.B(B),.SW(swR),.sout(csR));
     scrambler GREEN(.R(R),.G(G),.B(B),.SW(swG),.sout(csG));
@@ -32,9 +40,9 @@ module color_scrambler( input logic R,G,B,
 
 endmodule
 
-module scrambler (  input logic R,G,B,
+module scrambler (  input logic [7:0] R,G,B,
                     input logic [3:0] SW,
-                    output logic sout
+                    output logic [7:0] sout
                     );
     always_comb  begin
         case(SW)
